@@ -6,7 +6,7 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>SKU</th>
                         <th>Nama Produk</th>
                         <th>Lokasi Toko</th>
                         <th>Harga</th>
@@ -15,7 +15,7 @@
                 <tbody>
                     @forelse ($products as $product)
                     <tr>
-                        <td>{{ $product['id'] }}</td>
+                        <td>{{ $product['sku'] }}</td>
                         <td>{{ $product['nama'] }}</td>
                         <td>{{ $product['toko'] }}</td>
                         <td>{{ $product['harga'] }}</td>

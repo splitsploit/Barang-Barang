@@ -15,13 +15,13 @@ class ProductController extends Controller
     {
         $products = [
             [
-                'id' => 1,
+                'sku' => 1,
                 'nama' => 'Pen Warna Hijau',
                 'toko' => 'mirota godean',
                 'harga' => 20000
             ],
             [
-                'id' => 2,
+                'sku' => 2,
                 'nama' => 'Sabun Cuci Muka',
                 'toko' => 'mirota godean',
                 'harga' => 15000
