@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -15,20 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = [
-            [
-                'id' => 1,
-                'sku' => '#AB12312',
-                'name' => 'Product A',
-                'price' => 15000
-            ],
-            [
-                'id' => 2,
-                'sku' => '#CD12312',
-                'name' => 'Product B',
-                'price' => 20000
-            ]
-        ];
+        $products = Product::all();
+
         return view('product.index', ['products' => $products]);
     }
 
@@ -79,7 +68,9 @@ class ProductController extends Controller
 
         // return $validated;
 
-        return $request->all();
+        if ($product = Product::create($request->validated())) {
+            return redirect(route('products.index'))->with('success', 'Added!');
+        }
     }
 
     /**
@@ -101,7 +92,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        echo "edit products";
+        $product = Product::findOrFail($id);
+
+        return view('product.edit', ['product' => $product]);
     }
 
     /**
