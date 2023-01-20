@@ -110,7 +110,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         if ($product->update($request->validated())) {
-            return redirect()->route('products.index')->with('success', 'Success Update Products');
+            return redirect(route('products.index'))->with('success', 'Updated!'); 
         }
     }
 
@@ -122,6 +122,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        echo "delete products";
+        $product = Product::findOrFail($id);
+
+        if ($product->delete()) {
+            return redirect(route('products.index'))->with('success', 'Deleted!');
+        }
+
+        return redirect(route('products.index'))->with('error', 'Sorry, unable to delete this!');
     }
 }
