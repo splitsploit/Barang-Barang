@@ -45,7 +45,7 @@
                         }">
                         delete
                     </a>
-                    <form id="delete-row-{{ $product->id }}" action="" method="POST">
+                    <form id="delete-row-{{ $product->id }}" action="{{ route('products.destroy', ['id' => $product->id]) }}" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         @csrf
                     </form>
