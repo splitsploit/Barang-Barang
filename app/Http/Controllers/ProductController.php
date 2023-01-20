@@ -13,7 +13,22 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo "list products";
+        $products = [
+            [
+                'id' => 1,
+                'nama' => 'Pen Warna Hijau',
+                'toko' => 'mirota godean',
+                'harga' => 20000
+            ],
+            [
+                'id' => 2,
+                'nama' => 'Sabun Cuci Muka',
+                'toko' => 'mirota godean',
+                'harga' => 15000
+            ],
+        ];
+
+        return view('product.index', ['products' => $products]);
     }
 
     /**
