@@ -15,19 +15,18 @@ class ProductController extends Controller
     {
         $products = [
             [
-                'sku' => 1,
-                'nama' => 'Pen Warna Hijau',
-                'toko' => 'mirota godean',
-                'harga' => 20000
+                'id' => 1,
+                'sku' => '#AB12312',
+                'name' => 'Product A',
+                'price' => 15000
             ],
             [
-                'sku' => 2,
-                'nama' => 'Sabun Cuci Muka',
-                'toko' => 'mirota godean',
-                'harga' => 15000
-            ],
+                'id' => 2,
+                'sku' => '#CD12312',
+                'name' => 'Product B',
+                'price' => 20000
+            ]
         ];
-
         return view('product.index', ['products' => $products]);
     }
 
