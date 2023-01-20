@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,10 +48,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         // CARA 1
-
         // $request->validate([
         //     'sku' => ['required', 'unique:products', 'max:100'],
         //     'name' => ['required', 'max:100'],
@@ -61,24 +61,25 @@ class ProductController extends Controller
         // return 'Validate Data Correct';
 
         // CARA 2
+        // $validator = Validator::make($request->all(), [
+        //     'sku' => ['required', 'unique:products', 'max:100'],
+        //     'name' => ['required', 'max:100'],
+        //     'price' => ['required', 'numeric', 'min:1'],
+        //     'stock' => ['required', 'numeric', 'min:0'],
+        // ]);
 
-        $validator = Validator::make($request->all(), [
-            'sku' => ['required', 'unique:products', 'max:100'],
-            'name' => ['required', 'max:100'],
-            'price' => ['required', 'numeric', 'min:1'],
-            'stock' => ['required', 'numeric', 'min:0'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('products/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect('products/create')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
  
-        // Retrieve the validated input...
-        $validated = $validator->validated();
+        // // Retrieve the validated input...
+        // $validated = $validator->validated();
 
-        return $validated;
+        // return $validated;
+
+        return $request->all();
     }
 
     /**
