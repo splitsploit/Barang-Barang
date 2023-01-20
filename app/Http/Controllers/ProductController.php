@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
@@ -104,9 +105,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        echo "update products";
+        $product = Product::findOrFail($id);
+
+        if ($product->update($request->validated())) {
+            return redirect()->route('products.index')->with('success', 'Success Update Products');
+        }
     }
 
     /**
