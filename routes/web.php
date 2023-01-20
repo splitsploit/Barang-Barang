@@ -24,3 +24,10 @@ Route::post('products', [ProductController::class, 'store'])->name('products.sto
 Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::get('products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::get('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+// batasi parameter dengan REGEX
+Route::get('products/{id}', function($id)
+{
+    //
+})->where('id', '[0-9]+');
